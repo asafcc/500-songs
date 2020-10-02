@@ -7,5 +7,6 @@ greatest songs of all time, according to the "The Rolling Stones" magazine.
 - Itunes & Youtube API
 
 _Link to the website >>>_
-[link to website](https://best-500-songs.herokuapp.com/)
+
+**[Click Here](https://best-500-songs.herokuapp.com/)**
 ![example](/example.gif)
