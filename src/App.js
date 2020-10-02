@@ -82,18 +82,19 @@ function App() {
   useEffect(() => {
     if (state.title !== "") {
       let { title, interpret, number } = state;
+      let searchTerm =
+        title.replace(/ /g, "+") + "+" + interpret.replace(/ /g, "+");
       async function fetchData() {
         axios
           .get(
-            `https://cors-anywhere.herokuapp.com/https://itunes.apple.com/search?term=${interpret}+${title}
-            }&entity=song&limit=1`
+            `https://cors-anywhere.herokuapp.com/https://itunes.apple.com/search?term=${searchTerm}
+            &entity=song&limit=1`
           )
           .then((res) => {
             const url =
               "https://cors-anywhere.herokuapp.com/" +
               res.data.results[0].artworkUrl30;
             const artCover = url.replace(/30x30/, "1000x1000");
-
             extractColors(artCover, {
               crossOrigin: "anonymous",
               distance: 0.14,
