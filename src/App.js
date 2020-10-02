@@ -83,7 +83,7 @@ function App() {
     if (state.title !== "") {
       let { title, interpret, number } = state;
       let searchTerm =
-        title.replace(/ /g, "+") + "+" + interpret.replace(/ /g, "+");
+        interpret.replace(/ /g, "+") + "+" + title.replace(/ /g, "+");
       async function fetchData() {
         axios
           .get(
