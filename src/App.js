@@ -83,7 +83,7 @@ function App() {
     if (state.title !== "") {
       let { title, interpret, number } = state;
       let searchTerm =
-        interpret.replace(/ /g, "+") + "+" + title.replace(/ /g, "+");
+        title.replace(/ /g, "+") + "+" + interpret.replace(/ /g, "+");
       async function fetchData() {
         axios
           .get(
@@ -116,12 +116,16 @@ function App() {
   useEffect(() => {
     if (state.title !== "") {
       const fetchData = async () => {
-        const response = await youtubeAPI.get("/search", {
-          params: {
-            q: `${state.title} ${state.interpret}`,
-          },
-        });
-        setVideo(response.data.items[0].id.videoId);
+        try {
+          const response = await youtubeAPI.get("/search", {
+            params: {
+              q: `${state.title} ${state.interpret}`,
+            },
+          });
+          setVideo(response.data.items[0].id.videoId);
+        } catch (err) {
+          console.log(err);
+        }
       };
       fetchData();
     }
