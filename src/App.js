@@ -82,8 +82,7 @@ function App() {
   useEffect(() => {
     if (state.title !== "") {
       let { title, interpret, number } = state;
-      let searchTerm =
-        title.replace(/ /g, "+") + "+" + interpret.replace(/ /g, "+");
+      let searchTerm = interpret + "-" + title;
       async function fetchData() {
         axios
           .get(
