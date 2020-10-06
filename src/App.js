@@ -94,16 +94,15 @@ function App() {
               "https://cors-anywhere.herokuapp.com/" +
               res.data.results[0].artworkUrl30;
             const artCover = url.replace(/30x30/, "1000x1000");
+            dispatch({
+              type: "setSong",
+              payload: { title, interpret, artCover, number },
+            });
             extractColors(artCover, {
               crossOrigin: "anonymous",
               distance: 0.14,
             }).then((colors) => {
               setColors(colors);
-            });
-
-            dispatch({
-              type: "setSong",
-              payload: { title, interpret, artCover, number },
             });
           });
       }
