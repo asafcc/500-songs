@@ -91,7 +91,7 @@ function App() {
           )
           .then((res) => {
             const url = res.data.results[0].artworkUrl30;
-            const artCover = url.replace(/30x30/, "1000x1000");
+            const artCover = url.replace(/30x30/, "500x500");
             extractColors("https://cors-anywhere.herokuapp.com/" + artCover, {
               crossOrigin: "anonymous",
               distance: 0.14,
