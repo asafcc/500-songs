@@ -15,9 +15,10 @@ function AnimateBackground({ colors }) {
     const left = Math.random() * window.innerWidth;
     const top = Math.random() * window.innerHeight;
 
-    const duration =
+    const duration = parseInt(
       ANIMATION_DURATION_MIN_S +
-      Math.random() * (ANIMATION_DURATION_MAX_S - ANIMATION_DURATION_MIN_S);
+        Math.random() * (ANIMATION_DURATION_MAX_S - ANIMATION_DURATION_MIN_S)
+    );
     const color = colors[Math.floor(Math.random() * colors.length)]["hex"];
     return new Circle(radius, left, top, duration, color);
   }
