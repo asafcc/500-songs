@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 function Circle({ circle, getCircle }) {
   const [hasEnded, setHasEnded] = useState(false);
+  const timeoutRef = useRef(null);
+
   const [style, setStyle] = useState({
     width: circle.radius,
     height: circle.radius,
@@ -17,7 +19,7 @@ function Circle({ circle, getCircle }) {
   });
 
   useEffect(() => {
-    let timer;
+    // let timer;
     if (hasEnded) {
       const newCircle = getCircle();
       setStyle({
@@ -27,15 +29,16 @@ function Circle({ circle, getCircle }) {
         background: `radial-gradient(${newCircle.color}, transparent)`,
         top: newCircle.top,
         left: newCircle.left,
+        transform: `translate(-50%, -50%)`,
       });
       setHasEnded(false);
     } else {
-      timer = setTimeout(() => {
+      timeoutRef.current = setTimeout(() => {
         setHasEnded(true);
       }, circle.duration * 1000);
     }
     return () => {
-      clearTimeout(timer);
+      clearTimeout(timeoutRef.current);
     };
   }, [hasEnded]);
 
