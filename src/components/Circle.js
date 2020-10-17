@@ -16,11 +16,24 @@ function Circle({ circle, getCircle }) {
     zIndex: -2,
     animation: "opacity infinite",
     animationDuration: circle.duration + "s",
+    transform: "translate(-50%, -50%)",
   });
 
   useEffect(() => {
-    // let timer;
-    if (hasEnded) {
+    // console.log("start " + hasEnded);
+    if (!hasEnded) {
+      // animation started
+      // console.log("started " + hasEnded);
+      timeoutRef.current = setTimeout(() => {
+        setHasEnded(true);
+      }, circle.duration * 1000);
+      return () => {
+        // console.log("clear " + hasEnded);
+        clearTimeout(timeoutRef.current);
+      };
+    } else {
+      //animation ended
+      // console.log("ended " + hasEnded);
       const newCircle = getCircle();
       setStyle({
         ...style,
@@ -29,17 +42,9 @@ function Circle({ circle, getCircle }) {
         background: `radial-gradient(${newCircle.color}, transparent)`,
         top: newCircle.top,
         left: newCircle.left,
-        transform: `translate(-50%, -50%)`,
       });
       setHasEnded(false);
-    } else {
-      timeoutRef.current = setTimeout(() => {
-        setHasEnded(true);
-      }, circle.duration * 1000);
     }
-    return () => {
-      clearTimeout(timeoutRef.current);
-    };
   }, [hasEnded]);
 
   return <div className="circle" style={style}></div>;

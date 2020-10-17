@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import Circle from "../Classes/Circle";
 import CircleElement from "./Circle";
 function AnimateBackground({ colors }) {
-  const MIN_RADIUS = 250;
+  const MIN_RADIUS = 450;
   const MAX_RADIUS = 1000;
-  const ANIMATION_DURATION_MIN_S = 8;
+  const ANIMATION_DURATION_MIN_S = 7;
   const ANIMATION_DURATION_MAX_S = 15;
   const TOTAL_ELEMENTS = 10;
 
