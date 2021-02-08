@@ -86,13 +86,14 @@ function App() {
       async function fetchData() {
         axios
           .get(
-            `https://cors-anywhere.herokuapp.com/https://itunes.apple.com/search?term=${searchTerm}
+            //https://cors-anywhere.herokuapp.com/https://cors-anywhere.herokuapp.com/
+            `https://itunes.apple.com/search?term=${searchTerm}
             &entity=song&limit=1`
           )
           .then((res) => {
             const url = res.data.results[0].artworkUrl30;
             const artCover = url.replace(/30x30/, "500x500");
-            extractColors("https://cors-anywhere.herokuapp.com/" + artCover, {
+            extractColors("" + artCover, {
               crossOrigin: "anonymous",
               distance: 0.2,
             }).then((colors) => {
